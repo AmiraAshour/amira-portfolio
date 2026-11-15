@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Amira Ashour | Full Stack Developer – .NET & Angular</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Amira Ashour – Full Stack Developer specializing in ASP.NET Core, Angular, and scalable web applications. Based in Cairo, Egypt. ECPC Finalist with real-world client experience.">
+  <meta name="keywords" content="Amira Ashour, Full Stack Developer, .NET Developer, ASP.NET Core, Angular, C#, Backend Developer, Cairo, Egypt, Portfolio">
+  <meta name="author" content="Amira Ashour">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://amiraashour.dev/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Amira Ashour | Full Stack Developer – .NET & Angular">
+  <meta property="og:description" content="Full Stack Developer specializing in ASP.NET Core, Angular, and scalable web applications. ECPC Finalist with real-world client experience.">
+  <meta property="og:url" content="https://amiraashour.dev/">
+  <meta property="og:site_name" content="Amira Ashour Portfolio">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Amira Ashour | Full Stack Developer – .NET & Angular">
+  <meta name="twitter:description" content="Full Stack Developer specializing in ASP.NET Core, Angular, and scalable web applications. ECPC Finalist with real-world client experience.">
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Amira Ashour",
+    "jobTitle": "Full Stack Developer",
+    "description": "Full Stack Developer specializing in .NET and Angular",
+    "url": "https://amiraashour.dev/",
+    "email": "amira3shour74@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cairo",
+      "addressCountry": "EG"
+    },
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Minia University"
+    },
+    "knowsAbout": ["ASP.NET Core", "Angular", "C#", "SQL Server", "Entity Framework Core", "Full Stack Development"],
+    "sameAs": [
+      "https://github.com/AmiraAshour",
+      "https://www.linkedin.com/in/amira-ashour-0ba733350/",
+      "https://codeforces.com/profile/AmiraAshour"
+    ]
+  }
+  </script>
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Theme flash prevention -->
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('amira-portfolio-theme');
+        if (saved === 'light') {
+          document.body ? document.body.classList.add('light-theme') : 
+            document.addEventListener('DOMContentLoaded', function() {
+              document.body.classList.add('light-theme');
+            });
+        } else if (!saved) {
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (!prefersDark) {
+            document.addEventListener('DOMContentLoaded', function() {
+              document.body.classList.add('light-theme');
+            });
+          }
+        }
+      } catch(e) {}
+    })();
+  </script>
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>
