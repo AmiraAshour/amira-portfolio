@@ -1,18 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { ThemeService } from '../../services/theme.service';
+import { RevealDirective, ParallaxDirective } from '../../shared/animations.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
+  imports: [RevealDirective, ParallaxDirective],
   templateUrl: './about.component.html',
 })
 export class AboutComponent {
   theme = inject(ThemeService);
 
-  highlights = [
-    { icon: 'graduation-cap', label: 'B.IT – Minia University', sublabel: 'Graduated June 2026 · GPA 3.3 · Excellent' },
-    { icon: 'briefcase', label: 'Freelance Experience', sublabel: 'Delivered a real client application' },
-    { icon: 'trophy', label: 'ECPC Finalist', sublabel: 'Competitive programming' },
-    { icon: 'trending-up', label: 'Continuous Learner', sublabel: 'Always expanding my skill set' },
+  stats = [
+    { value: 'B.IT', label: 'Minia University', sub: 'June 2026' },
+    { value: '3.3', label: 'GPA / 4.0', sub: 'Excellent' },
+    { value: 'ECPC', label: 'Finalist', sub: 'Competitive Prog.' },
+    { value: '1st', label: 'Minia Camp', sub: 'Phase One' },
   ];
 }

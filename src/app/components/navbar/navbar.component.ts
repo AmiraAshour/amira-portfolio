@@ -1,4 +1,5 @@
-import { Component, inject, signal, HostListener } from '@angular/core';
+import { Component, inject, signal, HostListener, OnInit, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { ThemeService } from '../../services/theme.service';
 import { ScrollService } from '../../services/scroll.service';
 import { SOCIAL_LINKS } from '../../data/social.data';
@@ -8,13 +9,16 @@ import { SOCIAL_LINKS } from '../../data/social.data';
   standalone: true,
   templateUrl: './navbar.component.html',
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   theme = inject(ThemeService);
   scroll = inject(ScrollService);
+  private platformId = inject(PLATFORM_ID);
   socials = SOCIAL_LINKS.filter(s => s.name === 'GitHub' || s.name === 'LinkedIn');
 
   isScrolled = signal(false);
   mobileMenuOpen = signal(false);
+  hidden = signal(false);
+  private lastScrollY = 0;
 
   navLinks = [
     { label: 'Home', id: 'home' },
@@ -26,9 +30,22 @@ export class NavbarComponent {
     { label: 'Contact', id: 'contact' },
   ];
 
+  ngOnInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.lastScrollY = window.scrollY;
+    }
+  }
+
   @HostListener('window:scroll')
   onScroll() {
-    this.isScrolled.set(window.scrollY > 20);
+    const y = window.scrollY;
+    this.isScrolled.set(y > 50);
+    if (y > 300) {
+      this.hidden.set(y > this.lastScrollY);
+    } else {
+      this.hidden.set(false);
+    }
+    this.lastScrollY = y;
   }
 
   navigateTo(id: string) {

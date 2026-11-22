@@ -1,0 +1,92 @@
+<section id="about" [class]="'section-padding relative overflow-hidden ' + (theme.isDark() ? 'bg-[#0F1612]' : 'bg-[#EDEEE8]')">
+  <div class="absolute inset-0 dot-grid opacity-30"></div>
+
+  <div class="section-container relative z-10">
+    <!-- Section Header -->
+    <div class="mb-12 md:mb-20" appReveal="fade-up">
+      <span [class]="'section-label mb-4 ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">About Me</span>
+      <h2 [class]="'section-heading text-3xl md:text-4xl lg:text-5xl mt-4 ' + (theme.isDark() ? 'text-[#EFF2EA]' : 'text-[#141E16]')">
+        Getting to know the<br>
+        <span [class]="theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]'">developer</span> behind the code
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-20">
+      <!-- Left: Portrait + Stats -->
+      <div class="lg:col-span-5 min-w-0">
+        <!-- Photo -->
+        <div class="relative mb-10" appReveal="fade-right" [revealDelay]="0.1">
+          <div [class]="'relative rounded-2xl overflow-hidden border-2 aspect-[4/5] ' + (theme.isDark() ? 'border-[#1F2F24]' : 'border-[#D5DCD0]')">
+            <img
+              src="amira-photo.jpg"
+              alt="Amira Ashour"
+              class="w-full h-full object-cover object-top"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-6">
+              <p class="text-white font-bold text-xl tracking-tight">Amira Ashour</p>
+              <p class="text-white/70 text-sm font-mono">Full Stack Developer</p>
+            </div>
+          </div>
+          <!-- Decorative accent -->
+          <div class="absolute -bottom-3 -right-3 w-24 h-24 rounded-2xl border-2 -z-10"
+            [class]="theme.isDark() ? 'border-[#C7F36B]/20' : 'border-[#4D7A0A]/20'"
+            [appParallax]="10"></div>
+        </div>
+
+        <!-- Stats grid -->
+        <div class="grid grid-cols-2 gap-3" appReveal="fade-up" [revealDelay]="0.2">
+          @for (s of stats; track s.label) {
+            <div [class]="'glass-card p-5 text-center group hover:-translate-y-1 cursor-default '">
+              <p [class]="'text-2xl font-bold tracking-tight mb-1 transition-colors ' + (theme.isDark() ? 'text-[#C7F36B] group-hover:text-[#D5F78F]' : 'text-[#4D7A0A] group-hover:text-[#3D6208]')">
+                {{ s.value }}
+              </p>
+              <p [class]="'text-xs font-semibold ' + (theme.isDark() ? 'text-[#EFF2EA]' : 'text-[#141E16]')">{{ s.label }}</p>
+              <p [class]="'text-[10px] font-mono mt-0.5 ' + (theme.isDark() ? 'text-[#5C6E5E]' : 'text-[#8B9A8D]')">{{ s.sub }}</p>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Right: Bio -->
+      <div class="lg:col-span-7 flex flex-col justify-center min-w-0">
+        <div class="space-y-6" appReveal="fade-up" [revealDelay]="0.15">
+          <p [class]="'text-lg md:text-xl leading-relaxed ' + (theme.isDark() ? 'text-[#EFF2EA]' : 'text-[#141E16]')">
+            I'm a Full Stack .NET Developer with a strong focus on backend engineering. I specialize in
+            <span [class]="'font-semibold ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">ASP.NET Core, Entity Framework Core, SQL Server, and Angular</span>
+            — building scalable web applications with real-time features, background jobs, and third-party integrations.
+          </p>
+
+          <p [class]="'leading-relaxed ' + (theme.isDark() ? 'text-[#8A9A8C]' : 'text-[#566858]')">
+            I graduated from the Faculty of Science at Minia University with a Bachelor's degree in Information Technology
+            (GPA: 3.3 / 4.0, Excellent). My experience includes delivering a real freelance application for a client,
+            collaborative graduation projects, and independent software engineering projects.
+          </p>
+
+          <p [class]="'leading-relaxed ' + (theme.isDark() ? 'text-[#8A9A8C]' : 'text-[#566858]')">
+            Beyond development, I'm passionate about competitive programming — as an ECPC Finalist,
+            I've sharpened my problem-solving skills through algorithmic challenges. I believe in
+            continuous learning and applying clean architecture and design patterns to build maintainable software.
+          </p>
+        </div>
+
+        <!-- Values -->
+        <div [class]="'mt-10 p-6 md:p-8 rounded-2xl border-l-[3px] ' + (theme.isDark() ? 'bg-[#131C17] border-[#C7F36B]' : 'bg-white border-[#4D7A0A]')"
+          appReveal="fade-left" [revealDelay]="0.3">
+          <p [class]="'text-xs font-mono uppercase tracking-widest mb-5 ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">What I Bring</p>
+          <div class="grid sm:grid-cols-2 gap-3">
+            @for (item of ['Real client delivery experience', 'Clean architecture & design patterns', 'Competitive programming mindset', 'Passion for continuous learning']; track item) {
+              <div [class]="'flex items-start gap-3 p-3 rounded-xl transition-colors ' + (theme.isDark() ? 'hover:bg-[#182420]' : 'hover:bg-[#F7F8F4]')">
+                <span [class]="'mt-0.5 ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                </span>
+                <span [class]="'text-sm ' + (theme.isDark() ? 'text-[#8A9A8C]' : 'text-[#566858]')">{{ item }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
