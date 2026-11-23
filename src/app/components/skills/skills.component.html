@@ -18,7 +18,7 @@
           @for (cat of categories; track cat.title; let i = $index) {
             <button
               (click)="activeCategory.set(i)"
-              [class]="'group flex items-center gap-2.5 lg:gap-4 px-3.5 lg:px-5 py-3 lg:py-4 rounded-xl text-left transition-all duration-300 min-w-0 ' +
+              [class]="'group flex items-center gap-2.5 lg:gap-4 px-3.5 lg:px-5 py-3 lg:py-4 rounded-xl text-left min-w-0 ' +
                 (activeCategory() === i
                   ? (theme.isDark()
                       ? 'bg-[#C7F36B]/10 border border-[#C7F36B]/20 text-[#C7F36B]'
@@ -27,7 +27,7 @@
                       ? 'border border-transparent text-[#8A9A8C] hover:text-[#EFF2EA] hover:bg-[#131C17]'
                       : 'border border-transparent text-[#566858] hover:text-[#141E16] hover:bg-white'))"
             >
-              <span [class]="'flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-lg transition-all duration-300 shrink-0 ' +
+              <span [class]="'flex items-center justify-center w-9 h-9 lg:w-10 lg:h-10 rounded-lg shrink-0 ' +
                 (activeCategory() === i
                   ? (theme.isDark() ? 'bg-[#C7F36B]/20' : 'bg-[#4D7A0A]/20')
                   : (theme.isDark() ? 'bg-[#131C17]' : 'bg-[#EDEEE8]'))">
@@ -71,14 +71,14 @@
           <div class="grid grid-cols-1 min-[400px]:grid-cols-2 lg:grid-cols-3 gap-2.5 lg:gap-3">
             @for (skill of categories[activeCategory()].skills; track skill; let j = $index) {
               <span
-                [class]="'group inline-flex items-center gap-2.5 min-w-0 px-3.5 lg:px-4 py-2.5 lg:py-3 rounded-xl text-[13px] lg:text-sm font-medium border cursor-default transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md ' +
+                [class]="'group inline-flex items-center gap-2.5 min-w-0 px-3.5 lg:px-4 py-2.5 lg:py-3 rounded-xl text-[13px] lg:text-sm font-medium border cursor-default hover:-translate-y-0.5 hover:shadow-md ' +
                   (theme.isDark()
                     ? 'bg-[#0A0F0C] border-[#1F2F24] text-[#EFF2EA] hover:border-[#C7F36B]/40 hover:text-[#C7F36B] hover:shadow-[#C7F36B]/5'
                     : 'bg-[#F7F8F4] border-[#D5DCD0] text-[#141E16] hover:border-[#4D7A0A]/40 hover:text-[#4D7A0A] hover:shadow-[#4D7A0A]/5')"
                 [style.animation-delay]="(j * 0.03) + 's'"
                 style="animation: fadeSlideUp 0.4s ease-out both;"
               >
-                <span [class]="'w-1.5 h-1.5 rounded-full shrink-0 transition-colors ' + (theme.isDark() ? 'bg-[#1F2F24] group-hover:bg-[#C7F36B]' : 'bg-[#D5DCD0] group-hover:bg-[#4D7A0A]')"></span>
+                <span [class]="'w-1.5 h-1.5 rounded-full shrink-0 ' + (theme.isDark() ? 'bg-[#1F2F24] group-hover:bg-[#C7F36B]' : 'bg-[#D5DCD0] group-hover:bg-[#4D7A0A]')"></span>
                 <span class="min-w-0 break-words">{{ skill }}</span>
               </span>
             }

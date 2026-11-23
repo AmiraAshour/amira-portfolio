@@ -19,7 +19,7 @@
           appReveal="fade-up" [revealDelay]="i * 0.12"
         >
           <!-- Icon -->
-          <div [class]="'inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-7 transition-all duration-300 group-hover:scale-110 ' + (theme.isDark() ? 'bg-[#C7F36B]/10 text-[#C7F36B] group-hover:bg-[#C7F36B]/20' : 'bg-[#4D7A0A]/10 text-[#4D7A0A] group-hover:bg-[#4D7A0A]/20')">
+          <div [class]="'inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-7 group-hover:scale-110 ' + (theme.isDark() ? 'bg-[#C7F36B]/10 text-[#C7F36B] group-hover:bg-[#C7F36B]/20' : 'bg-[#4D7A0A]/10 text-[#4D7A0A] group-hover:bg-[#4D7A0A]/20')">
             @switch (a.icon) {
               @case ('trophy') {
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
@@ -42,7 +42,7 @@
 
           @if (a.link) {
             <a [href]="a.link" target="_blank" rel="noopener noreferrer"
-              [class]="'inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider transition-all duration-300 group/link ' + (theme.isDark() ? 'text-[#C7F36B] hover:text-[#D5F78F]' : 'text-[#4D7A0A] hover:text-[#3D6208]')">
+              [class]="'inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider group/link ' + (theme.isDark() ? 'text-[#C7F36B] hover:text-[#D5F78F]' : 'text-[#4D7A0A] hover:text-[#3D6208]')">
               {{ a.linkLabel }}
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             </a>

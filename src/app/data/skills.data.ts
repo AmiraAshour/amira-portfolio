@@ -18,6 +18,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
       'ASP.NET Core Identity',
       'SignalR',
       'Hangfire',
+
     ],
   },
   {

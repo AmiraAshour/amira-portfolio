@@ -21,7 +21,10 @@
               src="amira-photo.jpg"
               alt="Amira Ashour"
               class="w-full h-full object-cover object-top"
-              loading="lazy"
+              width="625"
+              height="658"
+              loading="eager"
+              decoding="async"
             />
             <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
             <div class="absolute bottom-0 left-0 right-0 p-6">
@@ -39,7 +42,7 @@
         <div class="grid grid-cols-2 gap-3" appReveal="fade-up" [revealDelay]="0.2">
           @for (s of stats; track s.label) {
             <div [class]="'glass-card p-5 text-center group hover:-translate-y-1 cursor-default '">
-              <p [class]="'text-2xl font-bold tracking-tight mb-1 transition-colors ' + (theme.isDark() ? 'text-[#C7F36B] group-hover:text-[#D5F78F]' : 'text-[#4D7A0A] group-hover:text-[#3D6208]')">
+              <p [class]="'text-2xl font-bold tracking-tight mb-1 ' + (theme.isDark() ? 'text-[#C7F36B] group-hover:text-[#D5F78F]' : 'text-[#4D7A0A] group-hover:text-[#3D6208]')">
                 {{ s.value }}
               </p>
               <p [class]="'text-xs font-semibold ' + (theme.isDark() ? 'text-[#EFF2EA]' : 'text-[#141E16]')">{{ s.label }}</p>
@@ -77,7 +80,7 @@
           <p [class]="'text-xs font-mono uppercase tracking-widest mb-5 ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">What I Bring</p>
           <div class="grid sm:grid-cols-2 gap-3">
             @for (item of ['Real client delivery experience', 'Clean architecture & design patterns', 'Competitive programming mindset', 'Passion for continuous learning']; track item) {
-              <div [class]="'flex items-start gap-3 p-3 rounded-xl transition-colors ' + (theme.isDark() ? 'hover:bg-[#182420]' : 'hover:bg-[#F7F8F4]')">
+              <div [class]="'flex items-start gap-3 p-3 rounded-xl ' + (theme.isDark() ? 'hover:bg-[#182420]' : 'hover:bg-[#F7F8F4]')">
                 <span [class]="'mt-0.5 ' + (theme.isDark() ? 'text-[#C7F36B]' : 'text-[#4D7A0A]')">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                 </span>

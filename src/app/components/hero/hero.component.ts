@@ -198,12 +198,20 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   private codeTimer?: number;
 
   private reducedMotion = false;
+  private paused = false;
+  private visible = true;
+  private io?: IntersectionObserver;
+  private onVisibilityChange?: () => void;
   private rafId = 0;
+  private running = false;
   private curX = 0;
   private curY = 0;
   private targetX = 0;
   private targetY = 0;
+  private lastPx = 0;
+  private lastPy = 0;
   private onPointerMove?: (e: PointerEvent) => void;
+  private onPointerLeave?: () => void;
 
   ngAfterViewInit(): void {
     if (!isPlatformBrowser(this.platformId)) return;
@@ -219,15 +227,73 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
       this.scheduleCode(500);
       this.setupPointerParallax();
     }
+
+    this.observeVisibility();
   }
 
   ngOnDestroy(): void {
     if (this.roleTimer) window.clearTimeout(this.roleTimer);
     if (this.codeTimer) window.clearTimeout(this.codeTimer);
     if (this.rafId) cancelAnimationFrame(this.rafId);
+    this.running = false;
+    this.io?.disconnect();
+    if (this.onVisibilityChange) {
+      document.removeEventListener('visibilitychange', this.onVisibilityChange);
+    }
     if (this.onPointerMove) {
       this.host.nativeElement.removeEventListener('pointermove', this.onPointerMove);
     }
+    if (this.onPointerLeave) {
+      this.host.nativeElement.removeEventListener('pointerleave', this.onPointerLeave);
+    }
+  }
+
+  /* ── Visibility-based pausing (keeps scrolling cheap) ── */
+  private observeVisibility(): void {
+    this.onVisibilityChange = () => this.syncAnimationState();
+    document.addEventListener('visibilitychange', this.onVisibilityChange);
+
+    if (typeof IntersectionObserver === 'undefined') return;
+
+    this.io = new IntersectionObserver(
+      (entries) => {
+        this.visible = entries[0]?.isIntersecting ?? true;
+        this.syncAnimationState();
+      },
+      { threshold: 0.01 },
+    );
+    this.io.observe(this.host.nativeElement);
+  }
+
+  private syncAnimationState(): void {
+    const shouldRun = this.visible && !document.hidden && !this.reducedMotion;
+    if (shouldRun) {
+      this.resumeAnimations();
+    } else {
+      this.pauseAnimations();
+    }
+  }
+
+  private pauseAnimations(): void {
+    if (this.paused) return;
+    this.paused = true;
+    if (this.roleTimer) {
+      window.clearTimeout(this.roleTimer);
+      this.roleTimer = undefined;
+    }
+    if (this.codeTimer) {
+      window.clearTimeout(this.codeTimer);
+      this.codeTimer = undefined;
+    }
+    this.host.nativeElement.classList.add('hero-paused');
+  }
+
+  private resumeAnimations(): void {
+    if (!this.paused) return;
+    this.paused = false;
+    this.host.nativeElement.classList.remove('hero-paused');
+    if (!this.roleTimer) this.scheduleRole(400);
+    if (!this.codeTimer) this.scheduleCode(400);
   }
 
   tokClass(type: TokenType): string {
@@ -236,7 +302,11 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
 
   /* ── Role typewriter ── */
   private scheduleRole(delay: number): void {
-    this.roleTimer = window.setTimeout(() => this.roleTick(), delay);
+    this.roleTimer = window.setTimeout(() => {
+      this.roleTimer = undefined;
+      if (this.paused) return;
+      this.roleTick();
+    }, delay);
   }
 
   private roleTick(): void {
@@ -281,7 +351,11 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   }
 
   private scheduleCode(delay: number): void {
-    this.codeTimer = window.setTimeout(() => this.codeTick(), delay);
+    this.codeTimer = window.setTimeout(() => {
+      this.codeTimer = undefined;
+      if (this.paused) return;
+      this.codeTick();
+    }, delay);
   }
 
   private codeTick(): void {
@@ -353,29 +427,62 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
     this.codeCursorLine.set(cursor);
   }
 
-  /* ── Pointer parallax (desktop only) ── */
+  /* ── Pointer parallax (desktop only, on-demand rAF) ── */
   private setupPointerParallax(): void {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
     this.onPointerMove = (e: PointerEvent) => {
       const rect = this.host.nativeElement.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return;
       this.targetX = (e.clientX - rect.left) / rect.width - 0.5;
       this.targetY = (e.clientY - rect.top) / rect.height - 0.5;
+      this.startParallax();
     };
-    this.host.nativeElement.addEventListener('pointermove', this.onPointerMove, {
-      passive: true,
-    });
+
+    this.onPointerLeave = () => {
+      this.targetX = 0;
+      this.targetY = 0;
+      this.startParallax();
+    };
+
+    this.host.nativeElement.addEventListener('pointermove', this.onPointerMove, { passive: true });
+    this.host.nativeElement.addEventListener('pointerleave', this.onPointerLeave, { passive: true });
+  }
+
+  private startParallax(): void {
+    if (this.running) return;
+    this.running = true;
     this.rafId = requestAnimationFrame(this.tickPointer);
   }
 
   private tickPointer = (): void => {
-    this.curX += (this.targetX - this.curX) * 0.08;
-    this.curY += (this.targetY - this.curY) * 0.08;
-    const orb = this.orbParallax?.nativeElement;
-    if (orb) {
-      orb.style.setProperty('--px', `${(this.curX * 22).toFixed(2)}px`);
-      orb.style.setProperty('--py', `${(this.curY * 22).toFixed(2)}px`);
+    const dx = this.targetX - this.curX;
+    const dy = this.targetY - this.curY;
+
+    this.curX += dx * 0.1;
+    this.curY += dy * 0.1;
+
+    const px = Math.round(this.curX * 2200) / 100;
+    const py = Math.round(this.curY * 2200) / 100;
+    if (px !== this.lastPx || py !== this.lastPy) {
+      const el = this.orbParallax?.nativeElement;
+      if (el) {
+        el.style.setProperty('--px', px + 'px');
+        el.style.setProperty('--py', py + 'px');
+        this.lastPx = px;
+        this.lastPy = py;
+      }
     }
+
+    // Stop the loop once the easing has effectively settled.
+    if (Math.abs(dx) < 0.001 && Math.abs(dy) < 0.001) {
+      this.curX = this.targetX;
+      this.curY = this.targetY;
+      this.running = false;
+      this.rafId = 0;
+      return;
+    }
+
     this.rafId = requestAnimationFrame(this.tickPointer);
   };
 }

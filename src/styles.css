@@ -58,7 +58,6 @@
     background-color: var(--color-bg-main);
     color: var(--color-text-main);
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
   }
 
   body.light-theme {
@@ -158,9 +157,9 @@
     inset: 0;
     opacity: 0.03;
     pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAjASURBVFhHPZcDrF5pF4VPp5jatm2mtqe27dS2OzO1NXWb2raN1DZS215/npXc/yY3+fKd875777XXWnt/QZ48eZQ0aVJVrVpVr1+/1tWrV/Xp0yf/58iRQy1atFDFihX1119/qVy5cjpw4ICiRImia9euKXTo0Lp//77evHmjO3fuKFSoUOrVq5du3bqlDx8+KFGiRNq1a5e/69KlixImTOj7OXvs2DEtWLBAAYeHDRumQYMGafPmzfrnn380ZswYVa5cWYkTJ9bz58+VMWNGxY4dW5MnT9aFCxdE0nnz5lWbNm106NAhJ75nzx6fIVmSefz4serWreuzuXPnVs6cOdWsWTONHDlSN27cUL169TR69GgFI0aM0OrVq/1y0aJFNX78eKVKlUr9+/dX7dq1neXBgwcVL148o3D8+HE1bdpU5cuX92WciRAhgurUqaNnz565yj59+qhWrVqKHj26/vvvP6VNm9bBatSo4TivXr3S9OnTFS1aNAXnzp3zw6hRo/rF27dv68uXL4Zp/vz56t69uytds2aN0QG62bNna8KECTpx4oRevHjhAlKkSOGkhw8fbrg7d+6sSJEiuYiyZctqyZIlatu2rWbNmqV06dLp169f2rRpk4JMmTIpfPjwPlykSBFVr17dCCxfvtw9z549u7Zt2+Y+cuDUqVM6ffq0EQiCwJXs37/fSZIIz+k9bQQpEIErZ8+e1bRp04wCCYYLF87tCtq1a6fv37+rUaNG2rt3rwlZrVo19e7d23CHCRNG169fV4UKFRyYdyEW0IMclSxevFjnz5/3e/v27fP5J0+euAUDBgxwQqlTpzZHSCBmzJj6+PGjEw/Wr19volARlwAdF8Pu0qVLGwVaASLv378XLSNI69at1bhxY5OQ92bOnKl169Zp3rx5ypIlixGIHz++g8GdEiVKGAmeZciQQT169NC7d+8UPHr0yAHJEpi6deumTp06GTo+I7uxY8dq4sSJSp48uVasWGGJggDMRzlHjhz5P4/69evnhFKmTGk+kBBtJGm+oyB4RnKgHVD91q1bre0yZcoYTvr68uVLM5nnadKksdRixIihOXPmqEOHDkYKmUaOHFkoqUqVKuYBAUEHzoAcxAMdPKV48eJau3atvn796nspPgCKrl27uiogfvr0qb59+6YECRI4Q/qKjh8+fOiEYDW9RedoG4RIOk6cOG4HMqatQ4YM0eHDh1WsWDEjijdEjBhRrVq10sqVK7V06VKfD378+OEHc+fOdVZkDnEIGitWLFdL9lwMYTEtJAeUaH/Dhg36/fu3AyK7Bw8eGAGSJSH6zPmNGzeqb9++bjWt2r59u7JmzaqAi7mkfv36Jgu6h+W7d+9WqVKlDPUff/xhA0EpBI8bN67hTJYsmb1j1KhRfk5gCIb50JKpU6eaI6CYP39+33fy5Ent3LnTXtOwYUMFuFaTJk108+ZNq+Do0aMCFfrz+fNnBypYsKB7f+/ePXOFHi5atMhn3r59qylTplheBIRPyBD5Mg+aN29uksIDTAgEiQlZSS4A/p8/fzog/SxQoICNIsTHCcQlIUQEblD5+++/jVS+fPmMTM2aNT0fQIEBRo9BB2ThFTxgWHEXngLSOGlAUEzjypUrJhd9p9KFCxdq8ODBTih9+vQmKFVmzpzZLcBIqBD3ZPqFJImLlixZ0qazbNkykxaDQyEgQxJwB0unSE/DBg0a+GIGDlBBRIyHw3Dh8uXLbkvhwoWtGOwaR6SnJIKNM7DgAsVUqlTJCAwcONCwQzb6DjEhIvzgGcoKGJG8BGy4HOMXowA6skQNsBs9UxWDBaSAG2dDalRNG5iO8ADe0EZQ3LJlix2SgO3bt3dBIEmMjh07KgAOXAkYWRZABCaTAIjAeqoHPkgHVzhDAv/++68JCfEmTZpkxJAd35EsKuEu0EF+kBnCQ1yKwu4D4CEAssiWLZty5cplj2cBYexCFByyZcuWRorDTDUqoWoYTRtoTdiwYU1kCEpbCMZ5LJtxTptREQbHhMUfzAHg4gXYyghlVNIvAqIC5Mg8WLVqlSUHrCQO3AQlAFUCMZsV31E9PMCg4BUO2LNnT3sOPOE+HNFGRNUMGVjPw4sXL3rMMozwdloDR5j1kI+hxWdQ4jy2zZLBXom5YGg4HxsS3/3555/mEOMdXqAyioWYAVljn0mSJHH1DBcGBssFXs3M5hJ2AWQFImgeNKiG7+EHs2HGjBl+v1ChQlYCZAQBJiHtJTDWzk4J4ZFngLkgOdQA6biUl9iS7t69a6YyqFjBSC7E81EDBoaEISE8Ql4MMhICKWY/fIG8BAcZUCZpHJedIeCLkOHAYcyFPvNHUiwqQIgrAjvIMOEgG5MUEtJCRjLWinENHTrU9suAA02eY8H4CXsDDgratMMqwLfHjRvnnmMywAcC9IzqICPEwg3pNXASBKKyuIDYpUuXXCHIsDeAAjyiACTI/kd78BCkifPCnwCmsu0ybOgx5EHDbC9UzT8ZMwNY0ZEXJMUtQY/3gZp3YD4kxs7Z++EViyzbFEGZG0xWRjkypOgA+bCAkiGM58cH4xOyhWy/KARDQjpczsIBAiTBuk1r0DfWytDhcgqjlaCFNPEKimJe4LbMFxsR8OMDbCx8xkSQHSsZidAzvALImAU43ZkzZ/xjhGrgD1USDHeEAyCE2UBW2A6/SAzZ4qQgR4IYVUAlkIrAVM1PL3wbdRAIJTAPgJSDsJnNCAIxATEXkuJyOBRix7STZRROcSdExD/wA370gAirQEA/aAHWigTZaBmdHKZ3DBsYjf9DRBYJlk1+0PAeoxl50j5ICiEJBok5jwtyFi/hj10AdLB2HDegekgHfGSHzIAcAgEvcmO9xqoZOCgiZMpBQCqFAzt27LALsnox80mIRZXlhWQZePwmJGGKo1Da4HFMdlTJiyQBMWE1kiMZKmFwYJ/MfBBjPjDASAa9s1zQIjwf36B9LCuMYgjMhMTE4BLE5CwF/Q8fzOk79v2TYwAAAABJRU5ErkJggg==");
     background-repeat: repeat;
-    background-size: 256px 256px;
+    background-size: 32px 32px;
   }
 
   /* ── Glow effect ── */
@@ -238,12 +237,41 @@
 .light-theme ::-webkit-scrollbar-thumb:hover { background: var(--color-accent-light); }
 
 /* ═══════════════════════════════════════════
-   Theme transition wrapper
+   Theme transitions (unified + load-gated)
+   ───────────────────────────────────────────
+   Theme changes are animated by a single .theme-transitioning class
+   added to <body> by ThemeService for ~350ms. While present, every
+   element inherits the same transition timing so all sections flip
+   together — no element can change before another.
+
+   The base :where() rule sets the transition; .theme-transitioning
+   reinforces it with !important so per-element utility classes
+   (transition-all, transition-colors, etc.) cannot override it.
+   It is removed after the transition ends so hover/interactive
+   transitions are unaffected in normal use.
    ═══════════════════════════════════════════ */
-body *, body *::before, body *::after {
-  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+:where(
+  body, header, nav, footer, section, .glass-card,
+  h1, h2, h3, h4, h5, h6, p, a, button, span, li, svg, input, textarea
+) {
+  transition-property: background-color, border-color, color, fill, stroke;
   transition-duration: 0.3s;
   transition-timing-function: ease;
+}
+
+/* Gate the unified transition behind .theme-transitioning so the saved
+   theme never animates on first paint. ThemeService adds this class only
+   during a user-triggered theme switch. !important prevents per-element
+   utility classes from desynchronising the swap. */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition-property: background-color, border-color, color, fill, stroke,
+    box-shadow !important;
+  transition-duration: 0.3s !important;
+  transition-timing-function: ease !important;
+  transition-delay: 0s !important;
 }
 
 /* ═══════════════════════════════════════════
@@ -264,8 +292,8 @@ body *, body *::before, body *::after {
   50% { transform: translate3d(4%, -3%, 0) scale(1.08); opacity: 0.8; }
 }
 @keyframes hero-grid-pan {
-  from { background-position: 0 0, 0 0; }
-  to { background-position: 64px 64px, 64px 64px; }
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(64px, 64px, 0); }
 }
 @keyframes hero-bounce {
   0%, 100% { transform: translateY(0); opacity: 1; }
@@ -285,24 +313,92 @@ body *, body *::before, body *::after {
 
 /* ── Animated grid backdrop ── */
 .hero-grid {
+  /* Over-sized so the transform loop never exposes an edge. */
+  inset: -64px;
   background-image:
-    linear-gradient(to right, rgba(199, 243, 107, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(199, 243, 107, 0.06) 1px, transparent 1px);
+    linear-gradient(to right, rgba(199, 243, 107, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(199, 243, 107, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
   animation: hero-grid-pan 24s linear infinite;
-  -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 78%);
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 78%);
+  will-change: transform;
 }
 .light-theme .hero-grid {
   background-image:
-    linear-gradient(to right, rgba(77, 122, 10, 0.09) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(77, 122, 10, 0.09) 1px, transparent 1px);
+    linear-gradient(to right, rgba(77, 122, 10, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(77, 122, 10, 0.08) 1px, transparent 1px);
+}
+
+/* ── Ambient glows ── */
+/* Radial-gradient fills instead of blur-[130px]: the colour fades to
+   transparent at the circle's edge, so no blur filter is needed. The
+   gradient is rasterized once and the hero-glow keyframes only animate
+   transform/opacity (compositor-friendly). */
+.hero-glow-a {
+  background: radial-gradient(
+    circle,
+    rgba(199, 243, 107, 0.16) 0%,
+    rgba(199, 243, 107, 0.08) 35%,
+    rgba(199, 243, 107, 0) 70%
+  );
+}
+.light-theme .hero-glow-a {
+  background: radial-gradient(
+    circle,
+    rgba(199, 243, 107, 0.28) 0%,
+    rgba(199, 243, 107, 0.13) 38%,
+    rgba(199, 243, 107, 0) 72%
+  );
+}
+
+.hero-glow-b {
+  background: radial-gradient(
+    circle,
+    rgba(77, 122, 10, 0.16) 0%,
+    rgba(77, 122, 10, 0.07) 35%,
+    rgba(77, 122, 10, 0) 70%
+  );
+}
+.light-theme .hero-glow-b {
+  background: radial-gradient(
+    circle,
+    rgba(165, 204, 85, 0.26) 0%,
+    rgba(165, 204, 85, 0.11) 38%,
+    rgba(165, 204, 85, 0) 72%
+  );
+}
+
+/* Orb glow: same technique, but sized to the floating orb card. Its
+   parent runs hero-float, so a gradient (not a blur filter) keeps each
+   animation frame cheap. */
+.hero-glow-orb {
+  background: radial-gradient(
+    circle,
+    rgba(199, 243, 107, 0.26) 0%,
+    rgba(199, 243, 107, 0.13) 40%,
+    rgba(199, 243, 107, 0) 72%
+  );
+}
+.light-theme .hero-glow-orb {
+  background: radial-gradient(
+    circle,
+    rgba(199, 243, 107, 0.42) 0%,
+    rgba(199, 243, 107, 0.2) 42%,
+    rgba(199, 243, 107, 0) 74%
+  );
 }
 
 /* ── Pointer parallax wrapper ── */
 .orb-parallax {
   transform: translate3d(var(--px, 0px), var(--py, 0px), 0);
   will-change: transform;
+}
+
+/* Offscreen / hidden tab: freeze every CSS animation in the hero so
+   scrolling lower sections costs no compositor/paint work. */
+.hero-paused *,
+.hero-paused *::before,
+.hero-paused *::after {
+  animation-play-state: paused !important;
 }
 
 /* ── Code editor ── */
@@ -393,4 +489,46 @@ body *, body *::before, body *::after {
 }
 .light-theme .role-cursor {
   background: #4D7A0A;
+}
+
+/* ═══════════════════════════════════════════
+   Theme switch: atomic cross-fade
+   ───────────────────────────────────────────
+   ThemeService calls document.startViewTransition() on toggle. The API
+   captures the old and new DOM as two snapshots and cross-fades the
+   *root* only — every element in the page is captured in the same two
+   frames, so no section can change before another. Elements with their
+   own `transition-*` classes are excluded (see Phase B below) so they
+   never animate underneath the snapshot.
+   ═══════════════════════════════════════════ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  /* Keep the page still (no slide) — only the colours cross-fade. */
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  /* Snapshot the outgoing frame at full opacity as the base layer. */
+  z-index: 1;
+}
+::view-transition-new(root) {
+  /* Cross-fade the incoming frame on top. 300ms matches the fallback. */
+  z-index: 2;
+  animation: 0.3s ease both vt-theme-in;
+}
+
+@keyframes vt-theme-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Respect reduced-motion: make the swap instant. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms;
+  }
 }

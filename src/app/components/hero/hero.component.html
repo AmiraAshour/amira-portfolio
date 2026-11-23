@@ -1,29 +1,27 @@
-<section id="home" class="relative min-h-screen flex items-center overflow-hidden">
+<section id="home" #heroRoot class="relative min-h-screen flex items-center overflow-hidden">
   <!-- Background layers -->
   <div class="absolute inset-0 hero-grid opacity-70 pointer-events-none"></div>
   <div class="absolute inset-0 noise-overlay pointer-events-none"></div>
 
-  <!-- Ambient glows -->
+  <!-- Ambient glows (radial gradients — no blur filter) -->
   <div
-    class="absolute -top-32 right-[-12%] w-[520px] h-[520px] rounded-full blur-[130px] pointer-events-none"
-    [class]="theme.isDark() ? 'bg-[#C7F36B]/10' : 'bg-[#C7F36B]/25'"
+    class="absolute -top-32 right-[-12%] w-[560px] h-[560px] rounded-full hero-glow-a pointer-events-none"
     style="animation: hero-glow 18s ease-in-out infinite;"></div>
   <div
-    class="absolute bottom-[-18%] left-[-12%] w-[460px] h-[460px] rounded-full blur-[130px] pointer-events-none"
-    [class]="theme.isDark() ? 'bg-[#4D7A0A]/10' : 'bg-[#A5CC55]/20'"
+    class="absolute bottom-[-18%] left-[-12%] w-[500px] h-[500px] rounded-full hero-glow-b pointer-events-none"
     style="animation: hero-glow 22s ease-in-out infinite reverse;"></div>
 
   <!-- Floating particles -->
-  <span class="absolute w-1 h-1 rounded-full pointer-events-none"
+  <span class="hidden sm:block absolute w-1 h-1 rounded-full pointer-events-none"
     [class]="theme.isDark() ? 'bg-[#C7F36B]' : 'bg-[#4D7A0A]'"
     style="top: 24%; left: 10%; animation: hero-float-dot 13s ease-in-out infinite;"></span>
-  <span class="absolute w-1 h-1 rounded-full pointer-events-none"
+  <span class="hidden sm:block absolute w-1 h-1 rounded-full pointer-events-none"
     [class]="theme.isDark() ? 'bg-[#C7F36B]' : 'bg-[#4D7A0A]'"
     style="top: 62%; left: 18%; animation: hero-float-dot 16s ease-in-out infinite 2s;"></span>
-  <span class="absolute w-1 h-1 rounded-full pointer-events-none"
+  <span class="hidden sm:block absolute w-1 h-1 rounded-full pointer-events-none"
     [class]="theme.isDark() ? 'bg-[#C7F36B]' : 'bg-[#4D7A0A]'"
     style="top: 30%; right: 22%; animation: hero-float-dot 15s ease-in-out infinite 4s;"></span>
-  <span class="absolute w-1.5 h-1.5 rounded-full pointer-events-none"
+  <span class="hidden sm:block absolute w-1.5 h-1.5 rounded-full pointer-events-none"
     [class]="theme.isDark() ? 'bg-[#C7F36B]' : 'bg-[#4D7A0A]'"
     style="top: 74%; right: 12%; animation: hero-float-dot 18s ease-in-out infinite 1s;"></span>
 
@@ -35,7 +33,7 @@
       <div class="lg:col-span-7">
 
         <!-- Status badge -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-medium mb-8 border transition-colors duration-300"
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full text-xs font-medium mb-8 border"
           [class]="theme.isDark() ? 'bg-[#131C17] border-[#1F2F24] text-[#C7F36B]' : 'bg-white border-[#D5DCD0] text-[#4D7A0A]'"
           style="animation: fadeSlideDown 0.8s ease-out both;">
           <span class="relative flex h-2 w-2">
@@ -72,14 +70,14 @@
         <!-- Info tags -->
         <div class="flex flex-wrap gap-2.5 mb-9"
           style="animation: fadeSlideUp 0.8s 0.6s ease-out both;">
-          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border backdrop-blur-sm transition-colors duration-300 ' + (theme.isDark() ? 'bg-[#131C17]/80 border-[#1F2F24] text-[#EFF2EA]' : 'bg-white/80 border-[#D5DCD0] text-[#141E16]')">
+          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border ' + (theme.isDark() ? 'bg-[#131C17]/80 border-[#1F2F24] text-[#EFF2EA]' : 'bg-white/80 border-[#D5DCD0] text-[#141E16]')">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             Full Stack Developer
           </span>
-          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border transition-colors duration-300 ' + (theme.isDark() ? 'bg-[#C7F36B]/5 border-[#C7F36B]/15 text-[#C7F36B]' : 'bg-[#4D7A0A]/5 border-[#4D7A0A]/15 text-[#4D7A0A]')">
+          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border ' + (theme.isDark() ? 'bg-[#C7F36B]/5 border-[#C7F36B]/15 text-[#C7F36B]' : 'bg-[#4D7A0A]/5 border-[#4D7A0A]/15 text-[#4D7A0A]')">
             .NET &amp; Angular
           </span>
-          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border backdrop-blur-sm transition-colors duration-300 ' + (theme.isDark() ? 'bg-[#131C17]/80 border-[#1F2F24] text-[#8A9A8C]' : 'bg-white/80 border-[#D5DCD0] text-[#566858]')">
+          <span [class]="'inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium border ' + (theme.isDark() ? 'bg-[#131C17]/80 border-[#1F2F24] text-[#8A9A8C]' : 'bg-white/80 border-[#D5DCD0] text-[#566858]')">
             <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             Cairo, Egypt
           </span>
@@ -101,7 +99,7 @@
             href="Amira_Ashour_CV.pdf"
             download
             [appMagnetic]="0.1"
-            [class]="'group flex items-center gap-2.5 px-7 py-3.5 text-sm font-semibold rounded-xl border transition-all duration-300 hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#EFF2EA] hover:border-[#C7F36B]/40 hover:bg-[#C7F36B]/5' : 'border-[#D5DCD0] text-[#141E16] hover:border-[#4D7A0A]/40 hover:bg-[#4D7A0A]/5')"
+            [class]="'group flex items-center gap-2.5 px-7 py-3.5 text-sm font-semibold rounded-xl border hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#EFF2EA] hover:border-[#C7F36B]/40 hover:bg-[#C7F36B]/5' : 'border-[#D5DCD0] text-[#141E16] hover:border-[#4D7A0A]/40 hover:bg-[#4D7A0A]/5')"
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-y-0.5 transition-transform duration-300"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Download CV
@@ -116,7 +114,7 @@
               [href]="social.url"
               target="_blank"
               rel="noopener noreferrer"
-              [class]="'w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#5C6E5E] hover:text-[#C7F36B] hover:border-[#C7F36B]/30 hover:bg-[#C7F36B]/5' : 'border-[#D5DCD0] text-[#8B9A8D] hover:text-[#4D7A0A] hover:border-[#4D7A0A]/30 hover:bg-[#4D7A0A]/5')"
+              [class]="'w-10 h-10 rounded-xl border flex items-center justify-center hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#5C6E5E] hover:text-[#C7F36B] hover:border-[#C7F36B]/30 hover:bg-[#C7F36B]/5' : 'border-[#D5DCD0] text-[#8B9A8D] hover:text-[#4D7A0A] hover:border-[#4D7A0A]/30 hover:bg-[#4D7A0A]/5')"
               [attr.aria-label]="social.label"
               [style.animation-delay]="(0.9 + i * 0.08) + 's'"
               style="animation: fadeSlideUp 0.6s ease-out both;"
@@ -146,9 +144,8 @@
         <div #orbParallax class="orb-parallax relative w-full max-w-[360px] sm:max-w-[400px]">
           <div style="animation: hero-float 9s ease-in-out infinite;">
 
-            <!-- Soft ambient glow -->
-            <div class="absolute inset-4 rounded-full blur-3xl opacity-60 pointer-events-none"
-              [class]="theme.isDark() ? 'bg-[#C7F36B]/20' : 'bg-[#C7F36B]/35'"></div>
+            <!-- Soft ambient glow (radial gradient — no blur filter) -->
+            <div class="absolute inset-4 rounded-full hero-glow-orb opacity-60 pointer-events-none"></div>
 
             <!-- Rotating orbital rings -->
             <div class="absolute inset-[-12px] sm:inset-[-20px] rounded-full border border-dashed pointer-events-none"
@@ -159,7 +156,7 @@
               style="animation: spin-slow 26s linear infinite reverse;"></div>
 
             <!-- Editor card -->
-            <div class="group relative rounded-[1.75rem] border backdrop-blur-xl overflow-hidden transition-all duration-500 hover:scale-[1.01]"
+            <div class="group relative rounded-[1.75rem] border overflow-hidden hover:scale-[1.01]"
               [class]="theme.isDark()
                 ? 'bg-gradient-to-b from-[#0F1612]/95 to-[#0A0F0C]/95 border-[#1F2F24] shadow-2xl shadow-black/50 hover:border-[#C7F36B]/30 hover:shadow-[#C7F36B]/10'
                 : 'bg-gradient-to-b from-white/95 to-[#F7F8F4]/95 border-[#D5DCD0] shadow-2xl shadow-black/10 hover:border-[#4D7A0A]/30 hover:shadow-[#4D7A0A]/10'">
@@ -215,8 +212,8 @@
     class="group absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 bg-transparent border-0 cursor-pointer"
     aria-label="Scroll to explore the About section"
     style="animation: fadeSlideUp 1s 1.2s ease-out both;">
-    <span [class]="'text-[10px] font-mono uppercase tracking-[0.25em] transition-colors duration-300 ' + (theme.isDark() ? 'text-[#5C6E5E] group-hover:text-[#C7F36B]' : 'text-[#8B9A8D] group-hover:text-[#4D7A0A]')">Scroll to explore</span>
-    <span class="relative w-6 h-9 rounded-full border-2 flex items-start justify-center pt-1.5 transition-colors duration-300"
+    <span [class]="'text-[10px] font-mono uppercase tracking-[0.25em] ' + (theme.isDark() ? 'text-[#5C6E5E] group-hover:text-[#C7F36B]' : 'text-[#8B9A8D] group-hover:text-[#4D7A0A]')">Scroll to explore</span>
+    <span class="relative w-6 h-9 rounded-full border-2 flex items-start justify-center pt-1.5"
       [class]="theme.isDark() ? 'border-[#1F2F24] group-hover:border-[#C7F36B]/50' : 'border-[#D5DCD0] group-hover:border-[#4D7A0A]/50'">
       <span class="w-1 h-2 rounded-full"
         [class]="theme.isDark() ? 'bg-[#C7F36B]' : 'bg-[#4D7A0A]'"

@@ -4,7 +4,7 @@
       <!-- Brand -->
       <div class="text-center md:text-left">
         <a (click)="scroll.scrollTo('home')" class="cursor-pointer group inline-block">
-          <p [class]="'font-bold text-lg tracking-tight transition-colors ' + (theme.isDark() ? 'text-[#EFF2EA] group-hover:text-[#C7F36B]' : 'text-[#141E16] group-hover:text-[#4D7A0A]')">
+          <p [class]="'font-bold text-lg tracking-tight ' + (theme.isDark() ? 'text-[#EFF2EA] group-hover:text-[#C7F36B]' : 'text-[#141E16] group-hover:text-[#4D7A0A]')">
             Amira Ashour
           </p>
           <p [class]="'text-xs font-mono mt-1 ' + (theme.isDark() ? 'text-[#5C6E5E]' : 'text-[#8B9A8D]')">
@@ -17,7 +17,7 @@
       <div class="flex items-center justify-center gap-2">
         @for (social of socials; track social.name) {
           <a [href]="social.url" target="_blank" rel="noopener noreferrer"
-            [class]="'w-10 h-10 rounded-xl border flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#5C6E5E] hover:text-[#C7F36B] hover:border-[#C7F36B]/30' : 'border-[#D5DCD0] text-[#8B9A8D] hover:text-[#4D7A0A] hover:border-[#4D7A0A]/30')"
+            [class]="'w-10 h-10 rounded-xl border flex items-center justify-center hover:-translate-y-0.5 ' + (theme.isDark() ? 'border-[#1F2F24] text-[#5C6E5E] hover:text-[#C7F36B] hover:border-[#C7F36B]/30' : 'border-[#D5DCD0] text-[#8B9A8D] hover:text-[#4D7A0A] hover:border-[#4D7A0A]/30')"
             [attr.aria-label]="social.label">
             @switch (social.icon) {
               @case ('github') {
