@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["projects.component.html"],
+  "sourcesContent": ["\n@keyframes expandIn {\n  from { opacity: 0; max-height: 0; }\n  to { opacity: 1; max-height: 2000px; }\n}\n"],
+  "mappings": ";AACA,WAAA;AACE;AAAO,aAAA;AAAY,gBAAA;AAAe;AAClC;AAAK,aAAA;AAAY,gBAAA;AAAoB;AACvC;",
+  "names": []
+}
